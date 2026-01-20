@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Videojuego Demo</title>
+  <title>Nombre del Videojuego</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="css/reset.css">
@@ -10,18 +10,116 @@
 </head>
 <body>
 
-  <header>
-    <h1>Videojuego Demo</h1>
-    <nav>
-      <a href="index.html">Inicio</a> |
-      <a href="demo.html">Demo</a>
-    </nav>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html">Iron Veil: Dominion</a>
+
+      <nav class="nav">
+        <a href="#features">Características</a>
+        <a href="#media">Media</a>
+        <a href="#beta">Beta</a>
+        <a class="btn" href="demo.html">Ver demo</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <p>La estructura del proyecto funciona correctamente.</p>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>Una poderosa maquina para controlarlo todo</h1>
+          <p class="lead">
+           Nuestro videojuego es un Tower Defense 3D, en un tren en
+movimiento que atraviesa parajes hostiles. El jugador debe
+gestionar el combustible del tren, equipar y mejorar vagones
+defensivos, y enfrentarse a oleadas de enemigos en cada
+tramo del recorrido hasta alcanzar el destino final.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn" href="demo.html">Probar demo de menús</a>
+            <a class="btn btn-ghost" href="#beta">Apúntate a la beta</a>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <div class="media-box">
+            <p>Imagen / vídeo aquí</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2>Características clave</h2>
+
+        <div class="cards">
+          <article class="card">
+            <h3>Feature 1</h3>
+            <p>Texto corto.</p>
+          </article>
+          <article class="card">
+            <h3>Feature 2</h3>
+            <p>Texto corto.</p>
+          </article>
+          <article class="card">
+            <h3>Feature 3</h3>
+            <p>Texto corto.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="media" class="section">
+      <div class="container">
+        <h2>Capturas y tráiler</h2>
+
+        <div class="slideshow">
+          <button class="slide-btn" id="prevSlide" type="button">‹</button>
+
+          <div class="slide">
+            <img id="slideImage" src="assets/img/placeholder-1.jpg" alt="Captura del juego">
+          </div>
+
+          <button class="slide-btn" id="nextSlide" type="button">›</button>
+        </div>
+
+        <p class="hint">*El slideshow lo activaremos con JS en el siguiente paso.*</p>
+      </div>
+    </section>
+
+    <section id="beta" class="section">
+      <div class="container">
+        <h2>Inscripción a la beta</h2>
+        <p>Déjanos tu email y te avisaremos cuando esté disponible.</p>
+
+        <form id="betaForm" class="beta-form" novalidate>
+          <label>
+            Email
+            <input id="betaEmail" name="email" type="email" placeholder="tuemail@ejemplo.com" required>
+          </label>
+
+          <label class="check">
+            <input id="betaOk" type="checkbox" required>
+            Acepto recibir emails sobre la beta.
+          </label>
+
+          <button class="btn" type="submit">Quiero acceso</button>
+
+          <p id="betaMsg" class="form-msg" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© 2026 Iron Veil — Demo académica</small>
+    </div>
+  </footer>
 
   <script src="js/main.js"></script>
 </body>
 </html>
+
