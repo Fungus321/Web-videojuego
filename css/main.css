@@ -1,24 +1,33 @@
 :root{
-  --bg: #0f1220;
-  --panel: #151a2d;
-  --text: #e9ecff;
-  --muted: #b8bfdc;
-  --accent: #7c5cff;
-  --accent2: #19d3ff;
-  --radius: 16px;
-  --shadow: 0 12px 30px rgba(0,0,0,.35);
-}
+ /* Iron Veil: Dominion — Gothic UI */
+  --bg: #0b0a0d;          /* fondo */
+  --bg2: #120f14;         /* degradados / zonas */
+  --panel: #141016;       /* tarjetas/paneles */
+  --panel2: #1b141c;      /* hover/variación */
+  --text: #e9e6e1;        /* marfil */
+  --muted: #b9b3aa;       /* texto secundario */
 
-*{ box-sizing: border-box; }
+  --red: #7a0f1b;         /* acento peligro / énfasis */
+  --red2: #b2182b;        /* hover */
+  --gold: #c9a227;        /* CTA / monedas */
+  --gold2: #f2d37a;       /* brillo */
+
+  --line: rgba(233,230,225,.10);
+  --shadow: 0 16px 40px rgba(0,0,0,.55);
+  --radius: 16px;
+}
 
 body{
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: radial-gradient(1200px 700px at 20% 10%, rgba(124,92,255,.25), transparent 60%),
-              radial-gradient(1000px 600px at 90% 30%, rgba(25,211,255,.18), transparent 55%),
-              var(--bg);
+  background:
+    radial-gradient(900px 500px at 15% 10%, rgba(122,15,27,.28), transparent 60%),
+    radial-gradient(900px 500px at 85% 25%, rgba(201,162,39,.18), transparent 55%),
+    radial-gradient(1200px 700px at 50% 120%, rgba(122,15,27,.18), transparent 60%),
+    var(--bg);
   color: var(--text);
 }
+
 
 a{ color: inherit; text-decoration: none; }
 
@@ -60,12 +69,27 @@ a{ color: inherit; text-decoration: none; }
   justify-content: center;
   padding: 10px 14px;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color: #081018;
-  font-weight: 700;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #1a1206;
+  font-weight: 800;
   border: 0;
   cursor: pointer;
   box-shadow: var(--shadow);
+  transition: transform .15s ease, filter .15s ease;
+}
+.btn:hover{ transform: translateY(-1px); filter: brightness(1.03); }
+.btn:active{ transform: translateY(0); }
+
+.btn-ghost{
+  background: transparent;
+  border: 1px solid rgba(201,162,39,.35);
+  color: var(--text);
+  box-shadow: none;
+}
+
+.btn-danger{
+  background: linear-gradient(135deg, var(--red), var(--red2));
+  color: var(--text);
 }
 
 .btn-ghost{
@@ -108,21 +132,16 @@ a{ color: inherit; text-decoration: none; }
   margin: 0 0 16px;
 }
 
-.cards{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-}
-
-.card{
-  background: rgba(21,26,45,.75);
-  border: 1px solid rgba(255,255,255,.08);
+.card, .hero-media .media-box, .slide{
+  background: linear-gradient(180deg, rgba(20,16,22,.92), rgba(11,10,13,.92));
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 16px;
+  box-shadow: var(--shadow);
 }
 
-.card h3{ margin: 0 0 6px; }
-.card p{ margin: 0; color: var(--muted); }
+.card:hover{
+  border-color: rgba(201,162,39,.25);
+}
 
 .slideshow{
   display: grid;
@@ -194,4 +213,12 @@ a{ color: inherit; text-decoration: none; }
   .hero-grid{ grid-template-columns: 1fr; }
   .cards{ grid-template-columns: 1fr; }
   .nav{ gap: 10px; }
+}
+h1, h2, h3{
+  letter-spacing: .04em;
+}
+.logo{
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-transform: uppercase;
 }
