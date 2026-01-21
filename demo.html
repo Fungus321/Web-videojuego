@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Iron Veil: Dominion — Demo Menús</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/demo.css">
+
+  <!-- jQuery (requisito para interactividad) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body class="demo-body">
+  <header class="demo-topbar">
+    <div class="topbar-left">
+      <a class="logo" href="index.html">IRON VEIL: Dominion</a>
+      <span class="topbar-sub">• Demo de menús</span>
+    </div>
+
+    <div class="topbar-right">
+      <div class="currency" title="Monedas">
+        <span class="coin-dot" aria-hidden="true"></span>
+        <span id="coinsValue">120</span>
+      </div>
+      <a class="btn btn-ghost" href="index.html">Volver a la landing</a>
+    </div>
+  </header>
+
+  <main class="demo-layout">
+    <aside class="demo-nav">
+      <h2 class="nav-title">MENÚ</h2>
+
+      <button class="nav-item is-active" data-screen="settings" type="button">Configuración</button>
+      <button class="nav-item" data-screen="upgrades" type="button">Dominio (Mejoras)</button>
+      <button class="nav-item" data-screen="loadout" type="button">Arsenal (Torretas)</button>
+      <button class="nav-item" data-screen="hud" type="button">HUD</button>
+
+      <div class="nav-divider"></div>
+
+      <button class="nav-item nav-item-danger" id="resetDemo" type="button">Reiniciar demo</button>
+    </aside>
+
+    <section class="demo-content">
+
+      <!-- SETTINGS -->
+      <article class="screen is-visible" id="screen-settings">
+        <header class="screen-header">
+          <h1>Configuración</h1>
+          <p>Ajustes generales del sistema de control del Tren.</p>
+        </header>
+
+        <div class="panel-grid">
+          <div class="panel">
+            <h3>Audio</h3>
+
+            <label class="field">
+              <span>Volumen maestro</span>
+              <input id="volMaster" type="range" min="0" max="100" value="70">
+              <span class="value" id="volMasterValue">70</span>
+            </label>
+
+            <label class="field">
+              <span>Música</span>
+              <input id="volMusic" type="range" min="0" max="100" value="60">
+              <span class="value" id="volMusicValue">60</span>
+            </label>
+
+            <label class="field">
+              <span>FX</span>
+              <input id="volFx" type="range" min="0" max="100" value="80">
+              <span class="value" id="volFxValue">80</span>
+            </label>
+          </div>
+
+          <div class="panel">
+            <h3>Vídeo</h3>
+
+            <label class="field">
+              <span>Resolución</span>
+              <select id="resolution">
+                <option>1920×1080</option>
+                <option>2560×1440</option>
+                <option>3840×2160</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Calidad</span>
+              <select id="quality">
+                <option>Baja</option>
+                <option selected>Alta</option>
+                <option>Ultra</option>
+              </select>
+            </label>
+
+            <label class="field check">
+              <input id="vSync" type="checkbox" checked>
+              <span>V-Sync</span>
+            </label>
+
+            <button class="btn" id="applySettings" type="button">Aplicar</button>
+            <p class="hint" id="settingsMsg" aria-live="polite"></p>
+          </div>
+        </div>
+      </article>
+
+      <!-- UPGRADES -->
+      <article class="screen" id="screen-upgrades">
+        <header class="screen-header">
+          <h1>Dominio</h1>
+          <p>Invierte monedas para resistir al Tren… o servirle.</p>
+        </header>
+
+        <div class="panel-grid">
+          <div class="panel">
+            <h3>Mejoras del tren</h3>
+
+            <div class="upgrade">
+              <div>
+                <strong>Daño</strong>
+                <p class="muted">Cada disparo impacta con más fuerza.</p>
+              </div>
+              <div class="stepper" data-up="damage">
+                <button class="step minus" type="button">−</button>
+                <span class="lvl" id="lvl-damage">1</span>
+                <button class="step plus" type="button">+</button>
+              </div>
+            </div>
+
+            <div class="upgrade">
+              <div>
+                <strong>Cadencia</strong>
+                <p class="muted">Dispara con mayor frecuencia.</p>
+              </div>
+              <div class="stepper" data-up="rate">
+                <button class="step minus" type="button">−</button>
+                <span class="lvl" id="lvl-rate">1</span>
+                <button class="step plus" type="button">+</button>
+              </div>
+            </div>
+
+            <div class="upgrade">
+              <div>
+                <strong>Blindaje</strong>
+                <p class="muted">Reduce el daño recibido por impactos y metralla.</p>
+              </div>
+              <div class="stepper" data-up="armor">
+                <button class="step minus" type="button">−</button>
+                <span class="lvl" id="lvl-armor">1</span>
+                <button class="step plus" type="button">+</button>
+              </div>
+            </div>
+
+            <div class="upgrade">
+              <div>
+                <strong>Reparación</strong>
+                <p class="muted">Mejora la recuperación entre oleadas.</p>
+              </div>
+              <div class="stepper" data-up="repair">
+                <button class="step minus" type="button">−</button>
+                <span class="lvl" id="lvl-repair">1</span>
+                <button class="step plus" type="button">+</button>
+              </div>
+            </div>
+
+            <p class="hint" id="upgradesMsg" aria-live="polite"></p>
+          </div>
+
+          <div class="panel">
+            <h3>Resumen</h3>
+            <div class="statline"><span>Blindaje</span><span id="statArmor">1.0×</span></div>
+            <div class="statline"><span>Reparación</span><span id="statRepair">1.0×</span></div>
+            <div class="statline"><span>Daño</span><span id="statDamage">1.0×</span></div>
+            <div class="statline"><span>Cadencia</span><span id="statRate">1.0×</span></div>
+
+            <div class="preview">
+              <div class="preview-title">Vista previa</div>
+              <div class="train-preview">
+                <div class="train"></div>
+                <div class="turret" id="trainStatus">BLINDAJE I</div>
+              </div>
+            </div>
+
+            <p class="hint">*La vista previa reacciona a las mejoras.*</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- LOADOUT -->
+      <article class="screen" id="screen-loadout">
+        <header class="screen-header">
+          <h1>Arsenal</h1>
+          <p>Selecciona el tipo de torreta principal.</p>
+        </header>
+
+        <div class="panel-grid">
+          <div class="panel">
+            <h3>Tipos de torreta</h3>
+
+            <div class="choices" id="weaponChoices">
+              <button class="choice is-selected" data-weapon="Vigilante de Hierro" data-dmg="1.1" data-rate="1.0" type="button">
+                Vigilante de Hierro
+              </button>
+              <button class="choice" data-weapon="Purificador" data-dmg="1.3" data-rate="0.9" type="button">
+                Purificador
+              </button>
+              <button class="choice" data-weapon="Dispersor de Paz" data-dmg="0.9" data-rate="1.3" type="button">
+                Dispersor de Paz
+              </button>
+              <button class="choice" data-weapon="Sacrilegio" data-dmg="1.6" data-rate="0.75" type="button">
+                Sacrilegio
+              </button>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Ficha</h3>
+            <div class="statline"><span>Arma seleccionada</span><span id="weaponName">Vigilante de Hierro</span></div>
+            <div class="statline"><span>Multiplicador daño</span><span id="weaponDmg">1.1×</span></div>
+            <div class="statline"><span>Multiplicador cadencia</span><span id="weaponRate">1.0×</span></div>
+
+            <div class="preview">
+              <div class="preview-title">Sello del hierro</div>
+              <div class="sigil" id="weaponSigil">IV</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- HUD -->
+      <article class="screen" id="screen-hud">
+        <header class="screen-header">
+          <h1>HUD</h1>
+          <p>Activa y desactiva elementos del interfaz.</p>
+        </header>
+
+        <div class="panel-grid">
+          <div class="panel">
+            <h3>Elementos</h3>
+
+            <label class="field check">
+              <input class="hudToggle" data-hud="hp" type="checkbox" checked>
+              <span>Barra de vida</span>
+            </label>
+
+            <label class="field check">
+              <input class="hudToggle" data-hud="xp" type="checkbox" checked>
+              <span>Experiencia</span>
+            </label>
+
+            <label class="field check">
+              <input class="hudToggle" data-hud="timer" type="checkbox" checked>
+              <span>Cronómetro</span>
+            </label>
+
+            <label class="field check">
+              <input class="hudToggle" data-hud="coins" type="checkbox" checked>
+              <span>Monedas</span>
+            </label>
+
+            <p class="hint">*La vista previa se actualiza al instante.*</p>
+          </div>
+
+          <div class="panel">
+            <h3>Vista previa HUD</h3>
+
+            <div class="hud-preview">
+              <div class="hud-item" id="hud-hp">Vida ████████</div>
+              <div class="hud-item" id="hud-xp">XP █████</div>
+              <div class="hud-item" id="hud-timer">⏱ 02:14</div>
+              <div class="hud-item" id="hud-coins">🪙 <span id="hudCoinsValue">120</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <script src="js/demo.js"></script>
+</body>
+</html>
