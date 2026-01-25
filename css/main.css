@@ -1,47 +1,55 @@
 :root{
- /* Iron Veil: Dominion — Gothic UI */
-  --bg: #0b0a0d;          /* fondo */
-  --bg2: #120f14;         /* degradados / zonas */
-  --panel: #141016;       /* tarjetas/paneles */
-  --panel2: #1b141c;      /* hover/variación */
-  --text: #e9e6e1;        /* marfil */
-  --muted: #b9b3aa;       /* texto secundario */
+  /* Paleta y tokens base */
+  --bg: #0b0a0d;
+  --bg2: #120f14;
+  --panel: #141016;
+  --panel2: #1b141c;
+  --text: #e9e6e1;
+  --muted: #b9b3aa;
 
-  --red: #7a0f1b;         /* acento peligro / énfasis */
-  --red2: #b2182b;        /* hover */
-  --gold: #c9a227;        /* CTA / monedas */
-  --gold2: #f2d37a;       /* brillo */
+  --red: #7a0f1b;
+  --red2: #b2182b;
+  --gold: #c9a227;
+  --gold2: #f2d37a;
 
   --line: rgba(233,230,225,.10);
   --shadow: 0 16px 40px rgba(0,0,0,.55);
   --radius: 16px;
 }
 
+*{
+  box-sizing: border-box;
+}
+
 body{
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
   background:
     radial-gradient(900px 500px at 15% 10%, rgba(122,15,27,.28), transparent 60%),
     radial-gradient(900px 500px at 85% 25%, rgba(201,162,39,.18), transparent 55%),
     radial-gradient(1200px 700px at 50% 120%, rgba(122,15,27,.18), transparent 60%),
     var(--bg);
-  color: var(--text);
 }
 
-
-a{ color: inherit; text-decoration: none; }
+a{
+  color: inherit;
+  text-decoration: none;
+}
 
 .container{
   width: min(1100px, 92%);
   margin: 0 auto;
 }
 
+/* ───────── Header ───────── */
+
 .site-header{
   position: sticky;
   top: 0;
-  background: rgba(15,18,32,.65);
+  background: rgba(11,10,13,.62);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid var(--line);
   z-index: 10;
 }
 
@@ -53,8 +61,9 @@ a{ color: inherit; text-decoration: none; }
 }
 
 .logo{
-  font-weight: 800;
-  letter-spacing: .12em;
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-transform: uppercase;
 }
 
 .nav{
@@ -62,6 +71,8 @@ a{ color: inherit; text-decoration: none; }
   gap: 14px;
   align-items: center;
 }
+
+/* ───────── Botones ───────── */
 
 .btn{
   display: inline-flex;
@@ -77,6 +88,7 @@ a{ color: inherit; text-decoration: none; }
   box-shadow: var(--shadow);
   transition: transform .15s ease, filter .15s ease;
 }
+
 .btn:hover{ transform: translateY(-1px); filter: brightness(1.03); }
 .btn:active{ transform: translateY(0); }
 
@@ -92,12 +104,7 @@ a{ color: inherit; text-decoration: none; }
   color: var(--text);
 }
 
-.btn-ghost{
-  background: transparent;
-  border: 1px solid rgba(255,255,255,.18);
-  color: var(--text);
-  box-shadow: none;
-}
+/* ───────── Hero ───────── */
 
 .hero{
   padding: 56px 0 28px;
@@ -110,38 +117,72 @@ a{ color: inherit; text-decoration: none; }
   align-items: center;
 }
 
-.lead{ color: var(--muted); font-size: 1.05rem; line-height: 1.6; }
+.lead{
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
 
-.hero-actions{ display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+.hero-actions{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
 
 .hero-media .media-box{
-  background: rgba(21,26,45,.75);
-  border: 1px solid rgba(255,255,255,.08);
+  background: linear-gradient(180deg, rgba(20,16,22,.92), rgba(11,10,13,.92));
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 26px;
   min-height: 240px;
   display: grid;
   place-items: center;
+  box-shadow: var(--shadow);
 }
 
+/* ───────── Secciones ───────── */
+
 .section{
-  padding: 42px 0;
+  padding: 56px 0;
 }
 
 .section h2{
   margin: 0 0 16px;
+  letter-spacing: .04em;
 }
 
-.card, .hero-media .media-box, .slide{
+/* ───────── Features ───────── */
+
+.cards{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.card{
   background: linear-gradient(180deg, rgba(20,16,22,.92), rgba(11,10,13,.92));
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  padding: 16px;
 }
 
 .card:hover{
   border-color: rgba(201,162,39,.25);
 }
+
+.card h3{
+  margin: 0 0 6px;
+}
+
+.card p{
+  margin: 0;
+  color: var(--muted);
+}
+
+/* ───────── Slideshow ───────── */
 
 .slideshow{
   display: grid;
@@ -151,13 +192,14 @@ a{ color: inherit; text-decoration: none; }
 }
 
 .slide{
-  background: rgba(21,26,45,.75);
-  border: 1px solid rgba(255,255,255,.08);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
   min-height: 280px;
   display: grid;
   place-items: center;
+  background: linear-gradient(180deg, rgba(20,16,22,.92), rgba(11,10,13,.92));
+  box-shadow: var(--shadow);
 }
 
 .slide img{
@@ -165,17 +207,20 @@ a{ color: inherit; text-decoration: none; }
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: opacity 160ms ease;
 }
 
 .slide-btn{
   height: 44px;
   width: 44px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.18);
-  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(233,230,225,.18);
+  background: rgba(0,0,0,.35);
   color: var(--text);
   cursor: pointer;
 }
+
+/* ───────── Formulario beta ───────── */
 
 .beta-form{
   display: grid;
@@ -186,10 +231,10 @@ a{ color: inherit; text-decoration: none; }
 
 .beta-form input[type="email"]{
   width: 100%;
-  padding: 12px 12px;
+  padding: 12px;
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.16);
-  background: rgba(0,0,0,.2);
+  border: 1px solid rgba(233,230,225,.16);
+  background: rgba(0,0,0,.25);
   color: var(--text);
 }
 
@@ -200,25 +245,48 @@ a{ color: inherit; text-decoration: none; }
   color: var(--muted);
 }
 
-.form-msg{ min-height: 22px; color: var(--muted); }
-
-.site-footer{
-  padding: 24px 0 40px;
-  border-top: 1px solid rgba(255,255,255,.08);
+.form-msg{
+  min-height: 22px;
   color: var(--muted);
 }
 
-/* ✅ Responsive (solo landing) */
+/* ───────── Media / capturas ───────── */
+
+#media{
+  position: relative;
+  overflow: hidden;
+}
+
+#media::before{
+  content: "";
+  position: absolute;
+  inset: -120px -60px;
+  background:
+    radial-gradient(900px 360px at 20% 25%, rgba(122,15,27,.32), transparent 62%),
+    radial-gradient(900px 380px at 80% 40%, rgba(201,162,39,.18), transparent 62%);
+  filter: blur(22px);
+  opacity: .85;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#media .container{
+  position: relative;
+  z-index: 1;
+}
+
+/* ───────── Footer ───────── */
+
+.site-footer{
+  padding: 24px 0 40px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+
+/* ───────── Responsive ───────── */
+
 @media (max-width: 900px){
   .hero-grid{ grid-template-columns: 1fr; }
   .cards{ grid-template-columns: 1fr; }
   .nav{ gap: 10px; }
-}
-h1, h2, h3{
-  letter-spacing: .04em;
-}
-.logo{
-  font-weight: 900;
-  letter-spacing: .18em;
-  text-transform: uppercase;
 }

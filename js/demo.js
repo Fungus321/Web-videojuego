@@ -23,7 +23,7 @@ $(function () {
   }
 
   function toRoman(n){
-    // simple y suficiente (hasta 5 niveles visibles)
+    //facil sencillo y para toda la familia (hasta 5 niveles visibles)
     const clamped = Math.max(1, Math.min(5, Math.round(n)));
     return "I".repeat(clamped);
   }
