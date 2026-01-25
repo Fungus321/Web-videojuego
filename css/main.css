@@ -290,3 +290,6 @@ a{
   .cards{ grid-template-columns: 1fr; }
   .nav{ gap: 10px; }
 }
+.input-error{
+  border-color: rgba(178,24,43,.7) !important;
+}
