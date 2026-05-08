@@ -293,3 +293,61 @@ a{
 .input-error{
   border-color: rgba(178,24,43,.7) !important;
 }
+/* Escáner de rutas */
+.scanner-panel{
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(20,16,22,.92), rgba(11,10,13,.92));
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 14px;
+}
+
+.scanner-panel select{
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(233,230,225,.16);
+  background: rgba(0,0,0,.25);
+  color: var(--text);
+}
+
+.api-result{
+  margin-top: 8px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(201,162,39,.22);
+  background: rgba(0,0,0,.22);
+}
+
+.api-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.api-card{
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.04);
+}
+
+.api-card strong{
+  display: block;
+  color: var(--gold2);
+  margin-bottom: 4px;
+}
+
+.api-warning{
+  color: var(--gold2);
+  font-weight: 700;
+}
+
+@media (max-width: 900px){
+  .api-grid{
+    grid-template-columns: 1fr;
+  }
+}

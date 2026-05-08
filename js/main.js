@@ -1,4 +1,17 @@
 // Landing slideshow (Iron Veil: Dominion)
+/*console.log("MAIN JS CARGADO");
+
+
+window.addEventListener("load", () => {
+  console.log("WINDOW LOAD");
+
+  const scanBtn = document.getElementById("scanRoute");
+  const routeSelect = document.getElementById("routeSelect");
+  const resultBox = document.getElementById("routeResult");
+
+  console.log(scanBtn, routeSelect, resultBox);
+}); */
+
 document.addEventListener("DOMContentLoaded", () => {
   const img = document.getElementById("slideImage");
   const prevBtn = document.getElementById("prevSlide");
@@ -121,5 +134,166 @@ $(function () {
     }
   });
 });
+
+// Escáner de rutas con Open-Meteo API
+document.addEventListener("DOMContentLoaded", () => {
+  const scanBtn = document.getElementById("scanRoute");
+  const routeSelect = document.getElementById("routeSelect");
+  const resultBox = document.getElementById("routeResult");
+
+  if (!scanBtn || !routeSelect || !resultBox) return;
+
+  function getThreatLevel(temp, wind, rain){
+    let danger = 0;
+
+    if (temp <= 5 || temp >= 30) danger++;
+    if (wind >= 25) danger++;
+    if (rain > 0) danger++;
+
+    if (danger === 0) return "Ruta estable";
+    if (danger === 1) return "Amenaza moderada";
+    if (danger === 2) return "Ruta hostil";
+    return "Dominio crítico";
+  }
+
+  function getWeatherLabel(code){
+    const labels = {
+      0: "Cielo despejado",
+      1: "Principalmente despejado",
+      2: "Parcialmente nublado",
+      3: "Cubierto",
+      45: "Niebla",
+      48: "Niebla helada",
+      51: "Llovizna ligera",
+      53: "Llovizna moderada",
+      55: "Llovizna densa",
+      61: "Lluvia ligera",
+      63: "Lluvia moderada",
+      65: "Lluvia intensa",
+      71: "Nieve ligera",
+      73: "Nieve moderada",
+      75: "Nieve intensa",
+      95: "Tormenta"
+    };
+
+    return labels[code] || "Condición desconocida";
+  }
+
+  async function scanRoute(){
+    console.log("Botón escanear pulsado");
+    const [lat, lon, city] = routeSelect.value.split(",");
+
+    resultBox.innerHTML = "<p>Escaneando territorio...</p>";
+
+    try {
+      const url =
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+        `&current=temperature_2m,precipitation,weather_code,wind_speed_10m`;
+
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error("Error al conectar con la API");
+      }
+
+      const data = await response.json();
+      const current = data.current;
+
+      const temp = current.temperature_2m;
+      const rain = current.precipitation;
+      const wind = current.wind_speed_10m;
+      const weather = getWeatherLabel(current.weather_code);
+      const threat = getThreatLevel(temp, wind, rain);
+
+      resultBox.innerHTML = `
+        <h3>${city}</h3>
+        <div class="api-grid">
+          <div class="api-card">
+            <strong>Temperatura</strong>
+            <span>${temp} °C</span>
+          </div>
+          <div class="api-card">
+            <strong>Viento</strong>
+            <span>${wind} km/h</span>
+          </div>
+          <div class="api-card">
+            <strong>Precipitación</strong>
+            <span>${rain} mm</span>
+          </div>
+          <div class="api-card">
+            <strong>Estado</strong>
+            <span>${weather}</span>
+          </div>
+        </div>
+        <p class="api-warning">Evaluación del Tren: ${threat}</p>
+      `;
+    } catch (error) {
+      resultBox.innerHTML = `
+        <p>No se pudo completar el escaneo. Revisa la conexión o inténtalo más tarde.</p>
+      `;
+    }
+  }
+  console.log("Escáner cargado correctamente");
+  scanBtn.addEventListener("click", scanRoute);
+  console.log("BOTON FUNCIONA");
+});
+
+
+// Escáner de rutas con API
+window.addEventListener("load", () => {
+  const scanBtn = document.getElementById("scanRoute");
+  const routeSelect = document.getElementById("routeSelect");
+  const resultBox = document.getElementById("routeResult");
+
+  if (!scanBtn || !routeSelect || !resultBox) return;
+
+  scanBtn.addEventListener("click", async () => {
+    const [lat, lon, city] = routeSelect.value.split(",");
+
+    resultBox.innerHTML = "<p>Escaneando territorio...</p>";
+
+    try {
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,precipitation,weather_code,wind_speed_10m`;
+
+      const response = await fetch(url);
+      const data = await response.json();
+
+      const current = data.current;
+
+      resultBox.innerHTML = `
+        <h3>${city}</h3>
+
+        <div class="api-grid">
+          <div class="api-card">
+            <strong>Temperatura</strong>
+            <span>${current.temperature_2m} °C</span>
+          </div>
+
+          <div class="api-card">
+            <strong>Viento</strong>
+            <span>${current.wind_speed_10m} km/h</span>
+          </div>
+
+          <div class="api-card">
+            <strong>Precipitación</strong>
+            <span>${current.precipitation} mm</span>
+          </div>
+
+          <div class="api-card">
+            <strong>Estado</strong>
+            <span>Código ${current.weather_code}</span>
+          </div>
+        </div>
+
+        <p class="api-warning">Evaluación del Tren: datos recibidos correctamente.</p>
+      `;
+    } catch (error) {
+      resultBox.innerHTML = `
+        <p>No se pudo completar el escaneo. Revisa la conexión o inténtalo más tarde.</p>
+      `;
+    }
+  });
+});
+
 
 });

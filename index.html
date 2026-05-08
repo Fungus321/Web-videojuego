@@ -95,6 +95,32 @@
       </div>
     </section>
 
+    <section id="route-scanner" class="section">
+  <div class="container">
+    <h2>Escáner de rutas</h2>
+    <p class="lead">
+      Consulta las condiciones de distintos territorios antes de enviar el Tren.
+    </p>
+
+    <div class="scanner-panel">
+      <label for="routeSelect">Selecciona una ruta</label>
+
+      <select id="routeSelect">
+        <option value="40.4168,-3.7038,Madrid">Madrid — Tramo Central</option>
+        <option value="51.5072,-0.1276,Londres">Londres — Distrito del Humo</option>
+        <option value="48.8566,2.3522,París">París — Sector Dorado</option>
+        <option value="52.5200,13.4050,Berlín">Berlín — Frontera de Acero</option>
+      </select>
+
+      <button class="btn" id="scanRoute" type="button">Escanear ruta</button>
+
+      <div id="routeResult" class="api-result">
+        <p>Selecciona una ruta para iniciar el escaneo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
     <section id="beta" class="section">
       <div class="container">
         <h2>Inscripción a la beta</h2>
