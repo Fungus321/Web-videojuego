@@ -281,12 +281,52 @@ window.addEventListener("load", () => {
 
           <div class="api-card">
             <strong>Estado</strong>
-            <span>Código ${current.weather_code}</span>
+            <span>${weatherState}</span>
           </div>
         </div>
 
-        <p class="api-warning">Evaluación del Tren: datos recibidos correctamente.</p>
+        <p class="api-warning">Evaluación del Tren: ${threatLevel}
       `;
+      function getWeatherState(code){
+     const states = {
+    0: "Cielo despejado",
+    1: "Zona estable",
+    2: "Nubes dispersas",
+    3: "Territorio cubierto",
+    45: "Niebla densa",
+    51: "Llovizna ligera",
+    61: "Lluvia ligera",
+    63: "Lluvia intensa",
+    71: "Nieve",
+    95: "Tormenta hostil"
+  };
+
+  return states[code] || "Condición desconocida";
+}
+
+const weatherState = getWeatherState(current.weather_code);
+
+
+function getThreat(temp, wind, rain){
+  let danger = 0;
+
+  if(temp <= 5 || temp >= 30) danger++;
+  if(wind >= 25) danger++;
+  if(rain > 0) danger++;
+
+  if(danger === 0) return "Ruta estable";
+  if(danger === 1) return "Amenaza moderada";
+  if(danger === 2) return "Ruta hostil";
+
+  return "Dominio crítico";
+}
+
+const threatLevel = getThreat(
+  current.temperature_2m,
+  current.wind_speed_10m,
+  current.precipitation
+);
+
     } catch (error) {
       resultBox.innerHTML = `
         <p>No se pudo completar el escaneo. Revisa la conexión o inténtalo más tarde.</p>
