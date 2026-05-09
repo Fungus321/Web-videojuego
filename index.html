@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Iron Veil: Dominion</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-  rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
 
   <header class="site-header">
@@ -32,7 +32,7 @@
         <div>
           <h1>Una poderosa maquina para controlarlo todo</h1>
           <p class="lead">
-           Nuestro videojuego es un Tower Defense 3D, en un tren en
+            Nuestro videojuego es un Tower Defense 3D, en un tren en
             movimiento que atraviesa parajes hostiles. El jugador debe
             gestionar el combustible del tren, equipar y mejorar vagones
             defensivos, y enfrentarse a oleadas de enemigos en cada
@@ -47,11 +47,9 @@
 
         <div class="hero-media">
           <div class="media-box">
-          <img
-          src="assets/img/tren.jpg"
-          alt="Iron Veil Dominion - Tren gótico"
-          style="width:100%; height:100%; object-fit: contain; border-radius:12px;">
-         </div>
+            <img src="assets/img/tren.jpg" alt="Iron Veil Dominion - Tren gótico"
+              style="width:100%; height:100%; object-fit: contain; border-radius:12px;">
+          </div>
         </div>
       </div>
     </section>
@@ -60,24 +58,29 @@
       <div class="container">
         <h2>Características clave</h2>
 
-        <div class="cards">
-          <article class="card">
-            <h3>Domina los railes</h3>
-            <p>Controla un tren imparable que avanza automáticamente a través de
-      parajes hostiles. Cada tramo es una prueba de resistencia y dominio.</p>
-          </article>
-          <article class="card">
-            <h3>Gestiona las mejoras del tren</h3>
-            <p> Invierte monedas en mejoras permanentes como daño, cadencia, blindaje y
-      reparación. Cada decisión afecta al destino del Tren.</p>
-          </article>
-          <article class="card">
-            <h3>Armamento cruel</h3>
-            <p>Equipa distintos tipos de armamento que modifican el comportamiento de
-      todas las armas del Tren, adaptando tu estilo de juego en cada partida.</p>
-          </article>
-        </div>
-      </div>
+        <div class="row g-3 cards">
+          <div class="col-12 col-md-4">
+            <div class="card h-100">
+              <h3>Domina los railes</h3>
+              <p>Controla un tren imparable que avanza automáticamente a través de
+                parajes hostiles. Cada tramo es una prueba de resistencia y dominio.</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="card h-100">
+              <h3>Gestiona las mejoras del tren</h3>
+              <p> Invierte monedas en mejoras permanentes como daño, cadencia, blindaje y
+                reparación. Cada decisión afecta al destino del Tren.</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="card h-100">
+              <h3>Armamento cruel</h3>
+              <p>Equipa distintos tipos de armamento que modifican el comportamiento de
+                todas las armas del Tren, adaptando tu estilo de juego en cada partida.</p>
+              </article>
+            </div>
+          </div>
     </section>
 
     <section id="media" class="section">
@@ -98,31 +101,33 @@
       </div>
     </section>
 
+
+
     <section id="route-scanner" class="section">
-  <div class="container">
-    <h2>Escáner de rutas</h2>
-    <p class="lead">
-      Consulta las condiciones de distintos territorios antes de enviar el Tren.
-    </p>
+      <div class="container">
+        <h2>Escáner de rutas</h2>
+        <p class="lead">
+          Consulta las condiciones de distintos territorios antes de enviar el Tren.
+        </p>
 
-    <div class="scanner-panel">
-      <label for="routeSelect">Selecciona una ruta</label>
+        <div class="scanner-panel">
+          <label for="routeSelect">Selecciona una ruta</label>
 
-      <select id="routeSelect">
-        <option value="40.4168,-3.7038,Madrid">Madrid — Tramo Central</option>
-        <option value="51.5072,-0.1276,Londres">Londres — Distrito del Humo</option>
-        <option value="48.8566,2.3522,París">París — Sector Dorado</option>
-        <option value="52.5200,13.4050,Berlín">Berlín — Frontera de Acero</option>
-      </select>
+          <select id="routeSelect">
+            <option value="40.4168,-3.7038,Madrid">Madrid — Tramo Central</option>
+            <option value="51.5072,-0.1276,Londres">Londres — Distrito del Humo</option>
+            <option value="48.8566,2.3522,París">París — Sector Dorado</option>
+            <option value="52.5200,13.4050,Berlín">Berlín — Frontera de Acero</option>
+          </select>
 
-      <button class="btn" id="scanRoute" type="button">Escanear ruta</button>
+          <button class="btn" id="scanRoute" type="button">Escanear ruta</button>
 
-      <div id="routeResult" class="api-result">
-        <p>Selecciona una ruta para iniciar el escaneo.</p>
+          <div id="routeResult" class="api-result">
+            <p>Selecciona una ruta para iniciar el escaneo.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <section id="beta" class="section">
       <div class="container">
@@ -154,9 +159,10 @@
     </div>
   </footer>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="js/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/main.js"></script>
 
 </body>
-</html>
 
+</html>
+)

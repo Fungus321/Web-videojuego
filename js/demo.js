@@ -9,26 +9,26 @@ $(function () {
   };
 
   // Helpers UI
-  function setCoins(v){
+  function setCoins(v) {
     state.coins = Math.max(0, v);
     $("#coinsValue").text(state.coins);
     $("#hudCoinsValue").text(state.coins);
   }
 
-  function showMsg($el, text){
+  function showMsg($el, text) {
     $el.text(text);
     clearTimeout($el.data("t"));
     const t = setTimeout(() => $el.text(""), 1800);
     $el.data("t", t);
   }
 
-  function toRoman(n){
+  function toRoman(n) {
     //facil sencillo y para toda la familia (hasta 5 niveles visibles)
     const clamped = Math.max(1, Math.min(5, Math.round(n)));
     return "I".repeat(clamped);
   }
 
-  function renderUpgrades(){
+  function renderUpgrades() {
     $("#statArmor").text(state.upgrades.armor.toFixed(1) + "×");
     $("#statRepair").text(state.upgrades.repair.toFixed(1) + "×");
     $("#statDamage").text(state.upgrades.damage.toFixed(1) + "×");
@@ -38,14 +38,14 @@ $(function () {
     $("#trainStatus").text("BLINDAJE " + toRoman(state.upgrades.armor));
   }
 
-  function renderWeapon(){
+  function renderWeapon() {
     $("#weaponName").text(state.weapon.name);
     $("#weaponDmg").text(state.weapon.dmg.toFixed(2) + "×");
     $("#weaponRate").text(state.weapon.rate.toFixed(2) + "×");
     $("#weaponSigil").text("IV");
   }
 
-  function renderHud(){
+  function renderHud() {
     $("#hud-hp").toggle(state.hud.hp);
     $("#hud-xp").toggle(state.hud.xp);
     $("#hud-timer").toggle(state.hud.timer);
@@ -53,7 +53,7 @@ $(function () {
   }
 
   // Navegación pantallas
-  $(".nav-item[data-screen]").on("click", function(){
+  $(".nav-item[data-screen]").on("click", function () {
     const key = $(this).data("screen");
 
     $(".nav-item").removeClass("is-active");
@@ -64,8 +64,8 @@ $(function () {
   });
 
   // SETTINGS: sliders
-  function bindSlider(id, outId){
-    $("#" + id).on("input", function(){
+  function bindSlider(id, outId) {
+    $("#" + id).on("input", function () {
       $("#" + outId).text($(this).val());
     });
   }
@@ -73,16 +73,16 @@ $(function () {
   bindSlider("volMusic", "volMusicValue");
   bindSlider("volFx", "volFxValue");
 
-  $("#applySettings").on("click", function(){
+  $("#applySettings").on("click", function () {
     showMsg($("#settingsMsg"), "Configuración aplicada.");
   });
 
   // UPGRADES: + / - con coste
   const COST = 20;
 
-  $(".stepper .plus").on("click", function(){
+  $(".stepper .plus").on("click", function () {
     const key = $(this).closest(".stepper").data("up"); // damage, rate, armor, repair
-    if(state.coins < COST){
+    if (state.coins < COST) {
       showMsg($("#upgradesMsg"), "No tienes suficientes monedas.");
       return;
     }
@@ -93,9 +93,9 @@ $(function () {
     showMsg($("#upgradesMsg"), "Mejora adquirida (−" + COST + ").");
   });
 
-  $(".stepper .minus").on("click", function(){
+  $(".stepper .minus").on("click", function () {
     const key = $(this).closest(".stepper").data("up");
-    if(state.upgrades[key] <= 1){
+    if (state.upgrades[key] <= 1) {
       showMsg($("#upgradesMsg"), "Nivel mínimo.");
       return;
     }
@@ -106,7 +106,7 @@ $(function () {
   });
 
   // LOADOUT: selección de arma
-  $("#weaponChoices .choice").on("click", function(){
+  $("#weaponChoices .choice").on("click", function () {
     $("#weaponChoices .choice").removeClass("is-selected");
     $(this).addClass("is-selected");
 
@@ -117,14 +117,14 @@ $(function () {
   });
 
   // HUD: toggles
-  $(".hudToggle").on("change", function(){
+  $(".hudToggle").on("change", function () {
     const key = $(this).data("hud");
     state.hud[key] = $(this).is(":checked");
     renderHud();
   });
 
   // Reset demo
-  $("#resetDemo").on("click", function(){
+  $("#resetDemo").on("click", function () {
     setCoins(120);
 
     state.upgrades = { armor: 1, repair: 1, damage: 1, rate: 1 };
