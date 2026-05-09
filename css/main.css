@@ -155,9 +155,6 @@ a{
 /* ───────── Features ───────── */
 
 .cards{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
   margin-top: 16px;
 }
 
@@ -167,6 +164,7 @@ a{
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 16px;
+  color: var(--text);
 }
 
 .card:hover{
@@ -293,7 +291,7 @@ a{
 .input-error{
   border-color: rgba(178,24,43,.7) !important;
 }
-/* Escáner de rutas */
+/* ───────── Escaner Rutas ───────── */
 .scanner-panel{
   margin-top: 16px;
   padding: 18px;
