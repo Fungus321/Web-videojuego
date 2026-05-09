@@ -369,7 +369,23 @@ document.addEventListener("DOMContentLoaded", () => {
             Evaluación del Tren: ${threatLevel}
           </p>
         `;
+        if (typeof gsap !== "undefined") {
+          gsap.from("#routeResult .api-card", {
+            opacity: 0,
+            y: 16,
+            duration: 0.45,
+            stagger: 0.08,
+            ease: "power2.out"
+          });
 
+          gsap.from("#routeResult .api-warning", {
+            opacity: 0,
+            y: 10,
+            duration: 0.45,
+            delay: 0.2,
+            ease: "power2.out"
+          });
+        }
       }
 
       catch (error) {
@@ -384,6 +400,62 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
       }
     })
+  });
+
+
+  //   GSAP ANIMATIONS
+
+  window.addEventListener("load", () => {
+    if (typeof gsap === "undefined") return;
+
+    gsap.from(".hero h1", {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: "power2.out"
+    });
+
+    gsap.from(".hero .lead", {
+      opacity: 0,
+      y: 20,
+      duration: 0.8,
+      delay: 0.2,
+      ease: "power2.out"
+    });
+
+    gsap.from(".hero-actions .btn", {
+      opacity: 0,
+      y: 18,
+      duration: 0.6,
+      delay: 0.4,
+      stagger: 0.12,
+      ease: "power2.out"
+    });
+
+    gsap.from(".hero-media .media-box", {
+      opacity: 0,
+      scale: 0.96,
+      duration: 0.9,
+      delay: 0.3,
+      ease: "power2.out"
+    });
+
+    gsap.from(".card", {
+      opacity: 0,
+      y: 28,
+      duration: 0.7,
+      stagger: 0.12,
+      delay: 0.5,
+      ease: "power2.out"
+    });
+
+    gsap.from("#route-scanner", {
+      opacity: 0,
+      y: 35,
+      duration: 0.8,
+      delay: 0.7,
+      ease: "power2.out"
+    });
   });
 });
 
